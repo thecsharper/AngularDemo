@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularDemo.Controllers
@@ -11,7 +10,7 @@ namespace AngularDemo.Controllers
     {
         private static string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching", "Burning"
         };
 
         [HttpGet("[action]")]
@@ -22,7 +21,8 @@ namespace AngularDemo.Controllers
             {
                 DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Summary = Summaries[rng.Next(Summaries.Length)],
+                Validated = "True"
             });
         }
 
@@ -39,6 +39,7 @@ namespace AngularDemo.Controllers
                     return 32 + (int)(TemperatureC / 0.5556);
                 }
             }
+            public string Validated { get; set; }
         }
     }
 }
